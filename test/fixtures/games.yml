@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  game_time: 2014-10-06 17:02:09
+  home_team_id: 
+  away_team_id: 
+
+two:
+  game_time: 2014-10-06 17:02:09
+  home_team_id: 
+  away_team_id: 
