@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006223433) do
+ActiveRecord::Schema.define(version: 20141007014739) do
 
   create_table "games", force: true do |t|
     t.datetime "game_time"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20141006223433) do
     t.string   "short"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "conference"
+    t.string   "division"
   end
 
   create_table "users", force: true do |t|

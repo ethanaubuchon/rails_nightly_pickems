@@ -1,0 +1,210 @@
+[{
+    "city":"Anaheim",
+    "name":"Ducks",
+    "short":"ANA",
+    "conference":"Western",
+    "division":"Pacific"
+},
+{
+    "city":"Arizona",
+    "name":"Coyotes",
+    "short":"ARI",
+    "conference":"Western",
+    "division":"Pacific"
+},
+{
+    "city":"Boston",
+    "name":"Bruins",
+    "short":"BOS",
+    "conference":"Eastern",
+    "division":"Northeast"
+},
+{
+    "city":"Buffalo",
+    "name":"Sabres",
+    "short":"BUF",
+    "conference":"Eastern",
+    "division":"Northeast"
+},
+{
+    "city":"Calgary",
+    "name":"Flames",
+    "short":"CGY",
+    "conference":"Western",
+    "division":"Northwest"
+},
+{
+    "city":"Carolina",
+    "name":"Hurricanes",
+    "short":"CAR",
+    "conference":"Eastern",
+    "division":"Southeast"
+},
+{
+    "city":"Chicago",
+    "name":"Blackhawks",
+    "short":"CHI",
+    "conference":"Western",
+    "division":"Central"
+},
+{
+    "city":"Colorado",
+    "name":"Avalanche",
+    "short":"COL",
+    "conference":"Western",
+    "division":"Northwest"
+},
+{
+    "city":"Columbus",
+    "name":"Bluejackets",
+    "short":"CBJ",
+    "conference":"Western",
+    "division":"Central"
+},
+{
+    "city":"Dallas",
+    "name":"Stars",
+    "short":"DAL",
+    "conference":"Western",
+    "division":"Pacific"
+},
+{
+    "city":"Detroit",
+    "name":"Red Wings",
+    "short":"DET",
+    "conference":"Western",
+    "division":"Central"
+},
+{
+    "city":"Edmonton",
+    "name":"Oilers",
+    "short":"EDM",
+    "conference":"Western",
+    "division":"Northwest"
+},
+{
+    "city":"Florida",
+    "name":"Panthers",
+    "short":"FLA",
+    "conference":"Eastern",
+    "division":"Southeast"
+},
+{
+    "city":"Los Angeles",
+    "name":"Kings",
+    "short":"LAK",
+    "conference":"Western",
+    "division":"Pacific"
+},
+{
+    "city":"Minnesota",
+    "name":"Wild",
+    "short":"MIN",
+    "conference":"Western",
+    "division":"Northwest"
+},
+{
+    "city":"Montreal",
+    "name":"Canadiens",
+    "short":"MTL",
+    "conference":"Eastern",
+    "division":"Northeast"
+},
+{
+    "city":"Nashville",
+    "name":"Predators",
+    "short":"NSH",
+    "conference":"Western",
+    "division":"Central"
+},
+{
+    "city":"New Jersey",
+    "name":"Devils",
+    "short":"NJD",
+    "conference":"Eastern",
+    "division":"Atlantic"
+},
+{
+    "city":"New York",
+    "name":"Islanders",
+    "short":"NYI",
+    "conference":"Eastern",
+    "division":"Atlantic"
+},
+{
+    "city":"New York",
+    "name":"Rangers",
+    "short":"NYR",
+    "conference":"Eastern",
+    "division":"Atlantic"
+},
+{
+    "city":"Ottawa",
+    "name":"Senators",
+    "short":"OTT",
+    "conference":"Eastern",
+    "division":"Northeast"
+},
+{
+    "city":"Philadelphia",
+    "name":"Flyers",
+    "short":"PHI",
+    "conference":"Eastern",
+    "division":"Atlantic"
+},
+{
+    "city":"Pittsburgh",
+    "name":"Penguins",
+    "short":"PIT",
+    "conference":"Eastern",
+    "division":"Atlantic"
+},
+{
+    "city":"San Jose",
+    "name":"Sharks",
+    "short":"SJS",
+    "conference":"Western",
+    "division":"Pacific"
+},
+{
+    "city":"St. Louis",
+    "name":"Blues",
+    "short":"STL",
+    "conference":"Western",
+    "division":"Central"
+},
+{
+    "city":"Tampa Bay",
+    "name":"Lightning",
+    "short":"TBL",
+    "conference":"Eastern",
+    "division":"Southeast"
+},
+{
+    "city":"Toronto",
+    "name":"Maple Leafs",
+    "short":"TOR",
+    "conference":"Eastern",
+    "division":"Northeast"
+},
+{
+    "city":"Vancouver",
+    "name":"Canucks",
+    "short":"VAN",
+    "conference":"Western",
+    "division":"Northwest"
+},
+{
+    "city":"Washington",
+    "name":"Capitals",
+    "short":"WSH",
+    "conference":"Eastern",
+    "division":"Southeast"
+},
+{
+    "city":"Winnipeg",
+    "name":"Jets",
+    "short":"WPG",
+    "conference":"Eastern",
+    "division":"Southeast"
+}]
