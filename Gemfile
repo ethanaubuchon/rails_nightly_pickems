@@ -40,3 +40,4 @@ gem 'unicorn'
 
 gem 'devise'
 gem 'annotate'
+gem 'mysql2'
