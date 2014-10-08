@@ -5,9 +5,9 @@
 #  id         :integer          not null, primary key
 #  user_id    :integer
 #  game_id    :integer
-#  pick       :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  team_id    :integer
 #
 
 require 'test_helper'
