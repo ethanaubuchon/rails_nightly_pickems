@@ -42,8 +42,8 @@ class PicksController < ApplicationController
 
   def index
     @day = params["day"].to_i
-    if !@day || @day < 0
-      @day = 0
+    if !@day || @day < 1
+      @day = 1
     end
 
     @users = User.all

@@ -1,5 +1,23 @@
 <h1>Listing games</h1>
 
+<%= link_to "View picks", picks_path%>
+
+<table>
+  <tr>
+    <td><%= link_to "<- Prev Day", games_path(:day => (@day+1)) %></td>
+    <td>
+    <% if @day == 0 %>
+      Today
+    <% elsif @day > 0 %>
+      Games <%= pluralize(@day.abs, "day") %> ago
+    <% else %>
+      Games in <%= pluralize(@day.abs, "day") %>
+    <% end %>
+    </td>
+    <td><%= link_to "Next Day ->", games_path(:day => (@day-1)) %></td>
+  </tr>
+</table>
+
 <table>
   <thead>
     <tr>

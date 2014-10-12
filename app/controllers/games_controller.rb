@@ -5,7 +5,16 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
+    @day = params["day"].to_i
+    if !@day
+      @day = 0
+    end
+
+    @games = Game.where(
+      'game_time BETWEEN ? AND ?',
+      @day.day.ago.beginning_of_day,
+      @day.day.ago.end_of_day
+    ).all
   end
 
   # GET /games/1
