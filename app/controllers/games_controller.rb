@@ -71,15 +71,15 @@ class GamesController < ApplicationController
     end
   end
 
-  def switch_teams
-    Game.all.each do |game|
-      temp = game.home_team
-      game.home_team = game.away_team
-      game.away_team = temp
-      game.save
-    end
-    redirect_to root_path
-  end
+  # def switch_teams
+  #   Game.all.each do |game|
+  #     temp = game.home_team
+  #     game.home_team = game.away_team
+  #     game.away_team = temp
+  #     game.save
+  #   end
+  #   redirect_to root_path
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
