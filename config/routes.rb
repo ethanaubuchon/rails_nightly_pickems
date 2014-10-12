@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'games#index'
 
+  match 'games/switch/k4hxjg7hzYwrTVsc9EN8sk6j5X35sQ92/' => "games#switch_teams",
+    :via => :get
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
