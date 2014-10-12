@@ -1,0 +1,45 @@
+<h1>Past Picks</h1>
+
+<table>
+  <tr>
+    <td><%= link_to "<- Prev Day", picks_path(:day => (@day+1)) %></td>
+    <td>
+    <% if @day == 0 %>
+      Today
+    <% elsif @day > 0 %>
+      Games <%= pluralize(@day.abs, "day") %> ago
+    <% else %>
+      Games in <%= pluralize(@day.abs, "day") %>
+    <% end %>
+    </td>
+    <% if @day > 0 %>
+      <td><%= link_to "Next Day ->", picks_path(:day => (@day-1)) %></td>
+    <% else %>
+      <td colspan="1"></td>
+    <% end %>
+  </tr>
+</table>
+
+<table>
+  <thread>
+    <tr>
+      <th>
+        Game
+      </th>
+      <% @users.each do |user| %>
+        <th><%= user.email %>'s Pick</th>
+      <% end %>
+    </tr>
+  </thread>
+
+  <tbody>
+  <% @data.each do |row| %>
+    <tr>
+      <td><%= row["game"] %></td>
+      <% @users.each do |user| %>
+        <td><%= row[user.email] %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

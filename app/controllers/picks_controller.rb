@@ -39,4 +39,33 @@ class PicksController < ApplicationController
       }
     end
   end
+
+  def index
+    @day = params["day"].to_i
+    if !@day || @day < 0
+      @day = 0
+    end
+
+    @users = User.all
+    @games = Game.where(
+      'game_time BETWEEN ? AND ?',
+      @day.day.ago.beginning_of_day,
+      @day.day.ago.end_of_day
+    ).all
+    @data = Array.new
+    @games.each do |game|
+      g = Hash.new
+      g["game"] = game.home_team.city + " " + game.home_team.name + " @ " + game.away_team.city + " " + game.away_team.name
+      User.all.each do |user|
+        pick = Pick.find_by(user_id: user.id, game_id: game.id)
+        if pick
+          pick_string = pick.team.city + " " + pick.team.name
+        else
+          pick_string = "N/A"
+        end
+        g[user.email] = pick_string
+      end
+      @data << g
+    end
+  end
 end
