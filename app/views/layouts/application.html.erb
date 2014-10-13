@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>NHLNightlyPickems</title>
+  <title>NHL Nightly Pick'ems</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <link rel="stylesheet" href="/css/bootstrap.css">
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.ico' %>
 </head>
 <body>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
-<%= yield %>
+  <div id="wrapper">
+    <%= render "layouts/nav" %>
+    <div id="page-wrapper">
+      <% if notice %>
+        <div class="alert alert-warning"><p class="notice"><%= notice %></p></div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-danger"><p class="alert"><%= alert %></p></div>
+      <% end %>
+      <div class="container-fluid">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>

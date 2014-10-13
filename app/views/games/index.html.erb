@@ -1,8 +1,6 @@
-<h1>Listing games</h1>
+<h1>Games</h1>
 
-<%= link_to "View picks", picks_path%>
-
-<table>
+<table class="table center">
   <tr>
     <td><%= link_to "<- Prev Day", games_path(:day => (@day+1)) %></td>
     <td>
@@ -18,7 +16,7 @@
   </tr>
 </table>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Game time</th>
@@ -30,14 +28,16 @@
   <tbody>
     <% @games.each do |game| %>
       <tr class="game-row">
-        <td><%= game.game_time %></td>
+        <td><%= game.game_time.strftime("%I:%M%p") %></td>
         <td>
           <% if game.picks.find_by(user_id: current_user.id) %>
             <button class="pick-team-link" disabled data-teamid=<%= game.away_team.id %> data-gameid=<%= game.id %>>
+              <%= game.away_team.city %>
               <%= game.away_team.name %>
             </button>
           <% else %>
             <button class="pick-team-link" data-teamid=<%= game.away_team.id %> data-gameid=<%= game.id %>>
+              <%= game.away_team.city %>
               <%= game.away_team.name %>
             </button>
           <% end %>
@@ -46,10 +46,12 @@
         <td>
           <% if game.picks.find_by(user_id: current_user.id) %>
             <button class="pick-team-link" disabled data-teamid=<%= game.home_team.id %> data-gameid=<%= game.id %>>
+              <%= game.home_team.city %>
               <%= game.home_team.name %>
             </button>
           <% else %>
             <button class="pick-team-link" data-teamid=<%= game.home_team.id %> data-gameid=<%= game.id %>>
+              <%= game.home_team.city %>
               <%= game.home_team.name %>
             </button>
           <% end %>
@@ -65,8 +67,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New Game', new_game_path %>
 
 <script>
   var token = "<%= form_authenticity_token %>";

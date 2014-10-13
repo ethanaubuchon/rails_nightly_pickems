@@ -1,0 +1,33 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <%= link_to "NHL Nightly Pick'ems", root_path, :class=>"navbar-brand" %>
+  </div>
+  <!-- Top Menu Items -->
+  <ul class="nav navbar-right top-nav">
+    <% if user_signed_in? %>
+      <li> <%= link_to "Games List", games_path %> </li>
+      <li> <%= link_to "Picks", picks_path %> </li>
+      <li>
+        <% @user = User.find current_user %>
+        <%= link_to @user.email, "#" %>
+      </li>
+      <li>
+        <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to 'Sign Up', new_user_registration_path  %>
+      </li>
+      <li>
+        <%= link_to 'Login', new_user_session_path %>
+      </li>
+    <% end %>
+  </ul>
+</nav>

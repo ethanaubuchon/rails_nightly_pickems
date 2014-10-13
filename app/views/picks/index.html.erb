@@ -1,8 +1,8 @@
-<h1>Past Picks</h1>
+<h1>Picks</h1>
 
 <%= link_to "Home", games_path %>
 
-<table>
+<table class="table center">
   <tr>
     <td><%= link_to "<- Prev Day", picks_path(:day => (@day+1)) %></td>
     <td>
@@ -22,7 +22,7 @@
   </tr>
 </table>
 
-<table>
+<table class="table">
   <thread>
     <tr>
       <th>
