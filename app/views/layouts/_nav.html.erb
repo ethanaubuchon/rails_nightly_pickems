@@ -17,8 +17,7 @@
       <li> <%= link_to "Games List", games_path %> </li>
       <li> <%= link_to "Picks", picks_path %> </li>
       <li>
-        <% @user = User.find current_user %>
-        <%= link_to @user.email, "#" %>
+        <%= link_to current_user.displayname, "#" %>
       </li>
       <li>
         <%= link_to "Log Out", destroy_user_session_path, :method => :delete %>
