@@ -4,7 +4,16 @@ class ScoresController < ApplicationController
   # GET /scores
   # GET /scores.json
   def index
-    @scores = Score.all
+    @day = params["day"].to_i
+    if !@day
+      @day = 0
+    end
+
+    @games = Game.where(
+      'game_time BETWEEN ? AND ?',
+      @day.day.ago.beginning_of_day.in_time_zone('Eastern Time (US & Canada)'),
+      @day.day.ago.end_of_day.in_time_zone('Eastern Time (US & Canada)')
+    ).all
   end
 
   # GET /scores/1
@@ -24,16 +33,35 @@ class ScoresController < ApplicationController
   # POST /scores
   # POST /scores.json
   def create
-    @score = Score.new(score_params)
-
+    game_id = params[:game_id]
+    home = params[:home]
+    away = params[:away]
     respond_to do |format|
-      if @score.save
-        format.html { redirect_to @score, notice: 'Score was successfully created.' }
-        format.json { render :show, status: :created, location: @score }
-      else
-        format.html { render :new }
-        format.json { render json: @score.errors, status: :unprocessable_entity }
-      end
+      format.json {
+        if !current_user.admin? && !current_user.god?
+          render :json => {
+            message: "You don't have the permissions BITCH!",
+            status: false
+          }
+        elsif !game_id || !home || !away
+          render :json => {
+            message: "Missing a parameter.  Please try again.",
+            status: false
+          }
+        else
+          if Score.create(home: home, away: away, game_id: game_id)
+            render :json => {
+              message: "Score saved",
+              status: true
+            }
+          else
+            render :json => {
+              message: "Failed to save",
+              status: false
+            }
+          end
+        end
+      }
     end
   end
 
@@ -65,10 +93,5 @@ class ScoresController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_score
       @score = Score.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def score_params
-      params.require(:score).permit(:home, :away)
     end
 end

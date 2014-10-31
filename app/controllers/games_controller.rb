@@ -12,8 +12,8 @@ class GamesController < ApplicationController
 
     @games = Game.where(
       'game_time BETWEEN ? AND ?',
-      @day.day.ago.beginning_of_day,
-      @day.day.ago.end_of_day
+      @day.day.ago.beginning_of_day.in_time_zone('Eastern Time (US & Canada)'),
+      @day.day.ago.end_of_day.in_time_zone('Eastern Time (US & Canada)')
     ).all
   end
 

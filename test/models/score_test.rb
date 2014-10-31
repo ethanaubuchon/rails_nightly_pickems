@@ -7,6 +7,7 @@
 #  away       :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  game_id    :integer
 #
 
 require 'test_helper'

@@ -55,7 +55,8 @@ class PicksController < ApplicationController
     @data = Array.new
     @games.each do |game|
       g = Hash.new
-      g["game"] = game.home_team.city + " " + game.home_team.name + " @ " + game.away_team.city + " " + game.away_team.name
+      g["game"] = game.home_team.city + " " + game.home_team.name +
+                  " @ " + game.away_team.city + " " + game.away_team.name
       User.all.each do |user|
         pick = Pick.find_by(user_id: user.id, game_id: game.id)
         if pick

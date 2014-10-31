@@ -15,9 +15,12 @@
 #  last_sign_in_ip        :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  displayname            :string(255)
+#  role                   :integer
 #
 
 class User < ActiveRecord::Base
+  enum role: [:user, :admin, :god]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
