@@ -11,6 +11,8 @@
     <% else %>
       Games in <%= pluralize(@day.abs, "day") %>
     <% end %>
+    <br/>
+    <%= @day.days.ago.to_date %>
     </td>
     <% if @day > 1 %>
       <td><%= link_to "Next Day ->", picks_path(:day => (@day-1)) %></td>
