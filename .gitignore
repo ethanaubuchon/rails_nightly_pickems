@@ -14,3 +14,5 @@ config/secrets.yml
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+/vendor/assets/bower_components
