@@ -15,4 +15,10 @@ class Game < ActiveRecord::Base
   belongs_to :away_team, :class_name => :Team
   has_many   :picks
   has_one    :score
+
+  def started?
+    if (0.days.ago.in_time_zone("Eastern Time (US & Canada)") > self.game_time.in_time_zone("Eastern Time (US & Canada)"))
+      return true
+    end
+  end
 end

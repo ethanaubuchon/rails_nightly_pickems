@@ -30,20 +30,22 @@
       <tr class="game-row">
         <td><%= game.game_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %></td>
         <td>
-          <button class="pick-team-link" <%= "disabled" if game.picks.find_by(user_id: current_user.id) %> data-teamid=<%= game.away_team.id %> data-gameid=<%= game.id %>>
+          <button class="pick-team-link" <%= "disabled" if game.started? %> data-teamid=<%= game.away_team.id %> data-gameid=<%= game.id %>>
             <%= game.away_team.city.titleize %>
             <%= game.away_team.name.titleize %>
           </button>
         </td>
         <td> @ <td>
         <td>
-          <button class="pick-team-link" <%= "disabled" if game.picks.find_by(user_id: current_user.id) %> data-teamid=<%= game.home_team.id %> data-gameid=<%= game.id %>>
+          <button class="pick-team-link" <%= "disabled" if game.started? %> data-teamid=<%= game.home_team.id %> data-gameid=<%= game.id %>>
             <%= game.home_team.city.titleize %>
             <%= game.home_team.name.titleize %>
           </button>
         </td>
         <% if game.picks.find_by(user_id: current_user.id) %>
-          <td class="message">You picked the team <%= game.picks.find_by(user_id: current_user.id).team.name %>!</td>
+          <td class="message">You picked the team <%= game.picks.find_by(user_id: current_user.id).team.name.titleize %>!</td>
+        <% elsif game.started? %>
+          <td class="message">You missed the game start time. No pick for you!</td>
         <% else %>
             <td class="message"></td>
         <% end %>
@@ -72,7 +74,6 @@
         authenticity_token: "<%= form_authenticity_token %>"
       }, function( data ) {
         row.find("td.message").text(data.message)
-        row.find("button.pick-team-link").attr('disabled','disabled');
       }, "json");
   });
 </script>
