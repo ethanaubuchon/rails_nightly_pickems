@@ -5,11 +5,9 @@
     <td><%= link_to "<- Prev Day", games_path(:day => (@day+1)) %></td>
     <td>
     <% if @day == 0 %>
-      Today
-    <% elsif @day > 0 %>
-      Games <%= pluralize(@day.abs, "day") %> ago
+      Today's
     <% else %>
-      Games in <%= pluralize(@day.abs, "day") %>
+      Games <%= pluralize(@day.abs, "day") %> <%= "ago" if @day > 0 %>
     <% end %>
     <br/>
     <%= @day.days.ago.to_date %>
@@ -30,33 +28,19 @@
   <tbody>
     <% @games.each do |game| %>
       <tr class="game-row">
-        <td><%= game.game_time.strftime("%I:%M%p") %></td>
+        <td><%= game.game_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %></td>
         <td>
-          <% if game.picks.find_by(user_id: current_user.id) %>
-            <button class="pick-team-link" disabled data-teamid=<%= game.away_team.id %> data-gameid=<%= game.id %>>
-              <%= game.away_team.city %>
-              <%= game.away_team.name %>
-            </button>
-          <% else %>
-            <button class="pick-team-link" data-teamid=<%= game.away_team.id %> data-gameid=<%= game.id %>>
-              <%= game.away_team.city %>
-              <%= game.away_team.name %>
-            </button>
-          <% end %>
+          <button class="pick-team-link" <%= "disabled" if game.picks.find_by(user_id: current_user.id) %> data-teamid=<%= game.away_team.id %> data-gameid=<%= game.id %>>
+            <%= game.away_team.city.titleize %>
+            <%= game.away_team.name.titleize %>
+          </button>
         </td>
         <td> @ <td>
         <td>
-          <% if game.picks.find_by(user_id: current_user.id) %>
-            <button class="pick-team-link" disabled data-teamid=<%= game.home_team.id %> data-gameid=<%= game.id %>>
-              <%= game.home_team.city %>
-              <%= game.home_team.name %>
-            </button>
-          <% else %>
-            <button class="pick-team-link" data-teamid=<%= game.home_team.id %> data-gameid=<%= game.id %>>
-              <%= game.home_team.city %>
-              <%= game.home_team.name %>
-            </button>
-          <% end %>
+          <button class="pick-team-link" <%= "disabled" if game.picks.find_by(user_id: current_user.id) %> data-teamid=<%= game.home_team.id %> data-gameid=<%= game.id %>>
+            <%= game.home_team.city.titleize %>
+            <%= game.home_team.name.titleize %>
+          </button>
         </td>
         <% if game.picks.find_by(user_id: current_user.id) %>
           <td class="message">You picked the team <%= game.picks.find_by(user_id: current_user.id).team.name %>!</td>
