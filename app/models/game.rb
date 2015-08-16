@@ -21,4 +21,16 @@ class Game < ActiveRecord::Base
       return true
     end
   end
+
+  def has_team?(team)
+    if team.is_a?(Team)
+      team_id = team.id
+    elsif team.is_a?(Integer)
+      team_id = team
+    else
+      raise "Expected Team or Integer. Received #{team.class.name}"
+    end
+
+    return (home_team_id == team_id || away_team_id == team_id)
+  end
 end

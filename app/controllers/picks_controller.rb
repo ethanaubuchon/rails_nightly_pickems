@@ -3,40 +3,27 @@ class PicksController < ApplicationController
   # POST /scores
   # POST /scores.json
   def create
-    game = Game.find(params["game_id"].to_i)
-    if game
-      if game.home_team.id == params["team_id"].to_i
-        team = game.home_team
-      elsif game.away_team.id == params["team_id"].to_i
-        team = game.away_team
-      else
-        @message =  "Team not playing in this game!"
-        @success = false
-      end
+    begin
+      @game = Game.find(params["game_id"].to_i)
+      raise "Team not found" if !@game.has_team?(params["team_id"].to_i)
+      @team = Team.find(params["team_id"].to_i)
 
-      @pick = Pick.new()
-      @pick.team = team
-      @pick.game = game
-      @pick.user = current_user
+      @pick = Pick.where(game: @game, user: current_user).first_or_create
+      @pick.team = @team
+      @pick.save!
 
-      if @pick.save
-        @message =  "You picked the "+team.name+"!"
-        @success = true
-      else
-        @message =  "Failed to save pick!"
-        @success = false
-      end
-    else
-      @message = "Did not find game!"
-      @success = false
-    end
-    respond_to do |format|
-      format.json {
-        render :json => {
-          message: @message,
-          status: @success
+      respond_to do |format|
+        format.json {
+          render :json => {message: "You picked " + @team.fullname.titleize}
         }
-      }
+      end
+    rescue => e
+      p e
+      respond_to do |format|
+        format.json {
+          render status: 400, :json => e
+        }
+      end
     end
   end
 
