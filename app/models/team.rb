@@ -10,6 +10,7 @@
 #  updated_at :datetime
 #  conference :string(255)
 #  division   :string(255)
+#  logo       :string
 #
 
 class Team < ActiveRecord::Base

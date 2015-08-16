@@ -1,210 +1,182 @@
-[{
-    "city":"Anaheim",
-    "name":"Ducks",
-    "short":"ANA",
-    "conference":"Western",
-    "division":"Pacific"
-},
-{
-    "city":"Arizona",
-    "name":"Coyotes",
-    "short":"ARI",
-    "conference":"Western",
-    "division":"Pacific"
-},
-{
-    "city":"Boston",
-    "name":"Bruins",
-    "short":"BOS",
-    "conference":"Eastern",
-    "division":"Northeast"
-},
-{
-    "city":"Buffalo",
-    "name":"Sabres",
-    "short":"BUF",
-    "conference":"Eastern",
-    "division":"Northeast"
-},
-{
-    "city":"Calgary",
-    "name":"Flames",
-    "short":"CGY",
-    "conference":"Western",
-    "division":"Northwest"
-},
-{
-    "city":"Carolina",
-    "name":"Hurricanes",
-    "short":"CAR",
-    "conference":"Eastern",
-    "division":"Southeast"
-},
-{
-    "city":"Chicago",
-    "name":"Blackhawks",
-    "short":"CHI",
-    "conference":"Western",
-    "division":"Central"
-},
-{
-    "city":"Colorado",
-    "name":"Avalanche",
-    "short":"COL",
-    "conference":"Western",
-    "division":"Northwest"
-},
-{
-    "city":"Columbus",
-    "name":"Bluejackets",
-    "short":"CBJ",
-    "conference":"Western",
-    "division":"Central"
-},
-{
-    "city":"Dallas",
-    "name":"Stars",
-    "short":"DAL",
-    "conference":"Western",
-    "division":"Pacific"
-},
-{
-    "city":"Detroit",
-    "name":"Red Wings",
-    "short":"DET",
-    "conference":"Western",
-    "division":"Central"
-},
-{
-    "city":"Edmonton",
-    "name":"Oilers",
-    "short":"EDM",
-    "conference":"Western",
-    "division":"Northwest"
-},
-{
-    "city":"Florida",
-    "name":"Panthers",
-    "short":"FLA",
-    "conference":"Eastern",
-    "division":"Southeast"
-},
-{
-    "city":"Los Angeles",
-    "name":"Kings",
-    "short":"LAK",
-    "conference":"Western",
-    "division":"Pacific"
-},
-{
-    "city":"Minnesota",
-    "name":"Wild",
-    "short":"MIN",
-    "conference":"Western",
-    "division":"Northwest"
-},
-{
-    "city":"Montreal",
-    "name":"Canadiens",
-    "short":"MTL",
-    "conference":"Eastern",
-    "division":"Northeast"
-},
-{
-    "city":"Nashville",
-    "name":"Predators",
-    "short":"NSH",
-    "conference":"Western",
-    "division":"Central"
-},
-{
-    "city":"New Jersey",
-    "name":"Devils",
-    "short":"NJD",
-    "conference":"Eastern",
-    "division":"Atlantic"
-},
-{
-    "city":"New York",
-    "name":"Islanders",
-    "short":"NYI",
-    "conference":"Eastern",
-    "division":"Atlantic"
-},
-{
-    "city":"New York",
-    "name":"Rangers",
-    "short":"NYR",
-    "conference":"Eastern",
-    "division":"Atlantic"
-},
-{
-    "city":"Ottawa",
-    "name":"Senators",
-    "short":"OTT",
-    "conference":"Eastern",
-    "division":"Northeast"
-},
-{
-    "city":"Philadelphia",
-    "name":"Flyers",
-    "short":"PHI",
-    "conference":"Eastern",
-    "division":"Atlantic"
-},
-{
-    "city":"Pittsburgh",
-    "name":"Penguins",
-    "short":"PIT",
-    "conference":"Eastern",
-    "division":"Atlantic"
-},
-{
-    "city":"San Jose",
-    "name":"Sharks",
-    "short":"SJS",
-    "conference":"Western",
-    "division":"Pacific"
-},
-{
-    "city":"St. Louis",
-    "name":"Blues",
-    "short":"STL",
-    "conference":"Western",
-    "division":"Central"
-},
-{
-    "city":"Tampa Bay",
-    "name":"Lightning",
-    "short":"TBL",
-    "conference":"Eastern",
-    "division":"Southeast"
-},
-{
-    "city":"Toronto",
-    "name":"Maple Leafs",
-    "short":"TOR",
-    "conference":"Eastern",
-    "division":"Northeast"
-},
-{
-    "city":"Vancouver",
-    "name":"Canucks",
-    "short":"VAN",
-    "conference":"Western",
-    "division":"Northwest"
-},
-{
-    "city":"Washington",
-    "name":"Capitals",
-    "short":"WSH",
-    "conference":"Eastern",
-    "division":"Southeast"
-},
-{
-    "city":"Winnipeg",
-    "name":"Jets",
-    "short":"WPG",
-    "conference":"Eastern",
-    "division":"Southeast"
-}]
+[
+  {
+    "short":"ana",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/ducks_logo.svgz?v=8.44",
+    "city":"anaheim",
+    "name":"ducks"
+  },
+  {
+    "short":"ari",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/coyotes_logo.svgz?v=8.44",
+    "city":"arizona",
+    "name":"coyotes"
+  },
+  {
+    "short":"cgy",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/flames_dark_logo.svgz?v=8.44",
+    "city":"calgary",
+    "name":"flames"
+  },
+  {
+    "short":"edm",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/oilers_logo.svgz?v=8.44",
+    "city":"edmonton",
+    "name":"oilers"
+  },
+  {
+    "short":"lak",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/kings_dark_logo.svgz?v=8.44",
+    "city":"los angeles",
+    "name":"kings"
+  },
+  {
+    "short":"sjs",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/sharks_logo.svgz?v=8.44",
+    "city":"san jose",
+    "name":"sharks"
+  },
+  {
+    "short":"van",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/canucks_dark_logo.svgz?v=8.44",
+    "city":"vancouver",
+    "name":"canucks"
+  },
+  {
+    "short":"chi",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/blackhawks_logo.svgz?v=8.44",
+    "city":"chicago",
+    "name":"blackhawks"
+  },
+  {
+    "short":"col",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/avalanche_logo.svgz?v=8.44",
+    "city":"colorado",
+    "name":"avalanche"
+  },
+  {
+    "short":"dal",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/stars_dark_logo.svgz?v=8.44",
+    "city":"dallas",
+    "name":"stars"
+  },
+  {
+    "short":"min",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/wild_logo.svgz?v=8.44",
+    "city":"minnesota",
+    "name":"wild"
+  },
+  {
+    "short":"nsh",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/predators_logo.svgz?v=8.44",
+    "city":"nashville",
+    "name":"predators"
+  },
+  {
+    "short":"stl",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/blues_dark_logo.svgz?v=8.44",
+    "city":"st. louis",
+    "name":"blues"
+  },
+  {
+    "short":"wpg",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/jets_logo.svgz?v=8.44",
+    "city":"winnipeg",
+    "name":"jets"
+  },
+  {
+    "short":"bos",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/bruins_logo.svgz?v=8.44",
+    "city":"boston",
+    "name":"bruins"
+  },
+  {
+    "short":"buf",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/sabres_logo.svgz?v=8.44",
+    "city":"buffalo",
+    "name":"sabres"
+  },
+  {
+    "short":"det",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/redwings_logo.svgz?v=8.44",
+    "city":"detroit",
+    "name":"red wings"
+  },
+  {
+    "short":"fla",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/panthers_logo.svgz?v=8.44",
+    "city":"florida",
+    "name":"panthers"
+  },
+  {
+    "short":"mtl",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/canadiens_logo.svgz?v=8.44",
+    "city":"montréal",
+    "name":"canadiens"
+  },
+  {
+    "short":"ott",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/senators_logo.svgz?v=8.44",
+    "city":"ottawa",
+    "name":"senators"
+  },
+  {
+    "short":"tbl",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/lightning_dark_logo.svgz?v=8.44",
+    "city":"tampa bay",
+    "name":"lightning"
+  },
+  {
+    "short":"tor",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/mapleleafs_dark_logo.svgz?v=8.44",
+    "city":"toronto",
+    "name":"maple leafs"
+  },
+  {
+    "short":"car",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/hurricanes_logo.svgz?v=8.44",
+    "city":"carolina",
+    "name":"hurricanes"
+  },
+  {
+    "short":"cbj",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/bluejackets_logo.svgz?v=8.44",
+    "city":"columbus",
+    "name":"blue jackets"
+  },
+  {
+    "short":"njd",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/devils_logo.svgz?v=8.44",
+    "city":"new jersey",
+    "name":"devils"
+  },
+  {
+    "short":"nyi",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/islanders_logo.svgz?v=8.44",
+    "city":"new york",
+    "name":"islanders"
+  },
+  {
+    "short":"nyr",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/rangers_logo.svgz?v=8.44",
+    "city":"new york",
+    "name":"rangers"
+  },
+  {
+    "short":"phi",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/flyers_dark_logo.svgz?v=8.44",
+    "city":"philadelphia",
+    "name":"flyers"
+  },
+  {
+    "short":"pit",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/penguins_logo.svgz?v=8.44",
+    "city":"pittsburgh",
+    "name":"penguins"
+  },
+  {
+    "short":"wsh",
+    "logo":"http://cdn.nhle.com/nhl/images/logos/teams/capitals_dark_logo.svgz?v=8.44",
+    "city":"washington",
+    "name":"capitals"
+  }
+]
