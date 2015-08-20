@@ -34,8 +34,8 @@ class ScoresController < ApplicationController
   # POST /scores.json
   def create
     game_id = params[:game_id]
-    home = params[:home]
-    away = params[:away]
+    home = params[:home].to_i
+    away = params[:away].to_i
     respond_to do |format|
       format.json {
         if !current_user.admin? && !current_user.god?
@@ -49,7 +49,10 @@ class ScoresController < ApplicationController
             status: false
           }
         else
-          if Score.create(home: home, away: away, game_id: game_id)
+          @score = Score.where(game_id: game_id).first_or_create
+          @score.home = home
+          @score.away = away
+          if @score.save
             render :json => {
               message: "Score saved",
               status: true

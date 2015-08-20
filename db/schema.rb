@@ -45,30 +45,30 @@ ActiveRecord::Schema.define(version: 20150816024447) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "city",       limit: 255
-    t.string   "short",      limit: 255
+    t.string   "name"
+    t.string   "city"
+    t.string   "short"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "conference", limit: 255
-    t.string   "division",   limit: 255
+    t.string   "conference"
+    t.string   "division"
     t.string   "logo"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "displayname",            limit: 255
+    t.string   "displayname"
     t.integer  "role"
   end
 

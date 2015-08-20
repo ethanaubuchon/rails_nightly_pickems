@@ -37,14 +37,14 @@
           <%= game.home_team.name %>
         </td>
         <td>
-          <input class="home-score" type="number" <%= 'value="'+game.score.away.to_s+'"' if game.score %>/>
+          <input class="home-score" type="number" value='<%= (game.score) ? game.score.home : 0 %>'/>
         </td>
         <td>
           <%= game.away_team.city %>
           <%= game.away_team.name %>
         </td>
         <td>
-          <input class="away-score" type="number" <%= 'value="'+game.score.away.to_s+'"' if game.score %>/>
+          <input class="away-score" type="number" value='<%= (game.score) ? game.score.home : 0 %>'/>
         </td>
         <td>
           <button class="score-submit" data-game-id="<%= game.id %>">Submit</button>
