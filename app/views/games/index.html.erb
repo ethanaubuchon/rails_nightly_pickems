@@ -10,7 +10,7 @@
       Games <%= pluralize(@day.abs, "day") %> <%= "ago" if @day > 0 %>
     <% end %>
     <br/>
-    <%= @day.days.ago.to_date %>
+    <input id="game-day" type="date" value=<%= @day.days.ago.to_date %>>
     </td>
     <td><%= link_to "Next Day ->", games_path(:day => (@day-1)) %></td>
   </tr>
@@ -58,6 +58,10 @@
 
 <script>
   var token = "<%= form_authenticity_token %>";
+  $("#game-day").on("change", function() {
+    var date = $(this).val();
+    window.location.href = "/games?date="+date
+  })
   $(".pick-team-link").on("click", function() {
     if ($(this).attr("disabled") == "disabled") {
       return;

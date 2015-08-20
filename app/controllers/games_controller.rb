@@ -5,14 +5,19 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @day = params["day"].to_i
-    if !@day
-      @day = 0
-    end
+    if (params["day"])
+      @day = params["day"].to_i
+      if !@day
+        @day = 0
+      end
 
-    @games = Game.where(
-      game_time: @day.days.ago.in_time_zone('Eastern Time (US & Canada)').beginning_of_day..@day.day.ago.in_time_zone('Eastern Time (US & Canada)').end_of_day
-    ).order("game_time ASC")
+      @games = Game.where(
+        game_time: @day.days.ago.in_time_zone('Eastern Time (US & Canada)').beginning_of_day..@day.day.ago.in_time_zone('Eastern Time (US & Canada)').end_of_day
+      ).order("game_time ASC")
+    elsif (params["date"])
+      @days = ((DateTime.now.to_i - DateTime.parse(params["date"]).to_i))/1.day
+      redirect_to(games_path(:day => (@days)))
+    end
   end
 
   # GET /games/1
