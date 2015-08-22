@@ -5,16 +5,15 @@ class ScoresController < ApplicationController
   # GET /scores.json
   def index
     @path = "/scores"
-    @day = params["day"].to_i
-    if !@day
-      @day = 0
+    if (params["date"])
+      @date = Date.parse(params["date"])
+    else
+      @date = Date.today
     end
 
     @games = Game.where(
-      'game_time BETWEEN ? AND ?',
-      @day.day.ago.beginning_of_day.in_time_zone('Eastern Time (US & Canada)'),
-      @day.day.ago.end_of_day.in_time_zone('Eastern Time (US & Canada)')
-    ).all
+      game_time: (@date)..(@date+1)
+    ).order("game_time ASC")
   end
 
   # GET /scores/1

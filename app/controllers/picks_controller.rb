@@ -29,17 +29,16 @@ class PicksController < ApplicationController
 
   def index
     @path = "/picks"
-    @day = params["day"].to_i
-    if !@day || @day < 1
-      @day = 1
+    @users = User.all
+    if (params["date"])
+      @date = Date.parse(params["date"])
+    else
+      @date = Date.today
     end
 
-    @users = User.all
     @games = Game.where(
-      'game_time BETWEEN ? AND ?',
-      @day.day.ago.beginning_of_day,
-      @day.day.ago.end_of_day
-    ).all
+      game_time: (@date)..(@date+1)
+    ).order("game_time ASC")
     @data = Array.new
     @games.each do |game|
       g = Hash.new
