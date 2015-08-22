@@ -33,4 +33,32 @@ class Game < ActiveRecord::Base
 
     return (home_team_id == team_id || away_team_id == team_id)
   end
+
+  def get_user_pick(user)
+    if user.is_a?(User)
+      user_id = user.id
+    elsif user.is_a?(Integer)
+      user_id = user
+    else
+      raise "Expected User or Integer. Received #{user.class.name}"
+    end
+
+    return self.picks.find_by(user_id: user_id)
+  end
+
+  def fullname
+    return "#{self.away_team.fullname.titleize} @ #{self.home_team.fullname.titleize}"
+  end
+
+  def city_name
+    return "#{self.away_team.city.titleize} @ #{self.home_team.city.titleize}"
+  end
+
+  def name
+    return "#{self.away_team.name.titleize} @ #{self.home_team.name.titleize}"
+  end
+
+  def short_name
+    return "#{self.away_team.short.upcase} @ #{self.home_team.short.upcase}"
+  end
 end

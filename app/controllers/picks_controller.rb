@@ -36,24 +36,8 @@ class PicksController < ApplicationController
       @date = Date.today
     end
 
-    @games = Game.where(
+    @games = Game.includes(:picks => :team).where(
       game_time: (@date)..(@date+1)
     ).order("game_time ASC")
-    @data = Array.new
-    @games.each do |game|
-      g = Hash.new
-      g["game"] = game.home_team.city + " " + game.home_team.name +
-                  " @ " + game.away_team.city + " " + game.away_team.name
-      User.all.each do |user|
-        pick = Pick.find_by(user_id: user.id, game_id: game.id)
-        if pick
-          pick_string = pick.team.city + " " + pick.team.name
-        else
-          pick_string = "N/A"
-        end
-        g[user.email] = pick_string
-      end
-      @data << g
-    end
   end
 end

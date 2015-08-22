@@ -1,6 +1,6 @@
 <h1>Picks</h1>
 
-<%= render partial: "shared/datepicker", locals: {day: @day, path: @path} %>
+<%= render partial: "shared/datepicker", locals: {date: @date, path: @path} %>
 
 <table class="table">
   <thread>
@@ -15,11 +15,12 @@
   </thread>
 
   <tbody>
-  <% @data.each do |row| %>
+  <% @games.each do |game| %>
     <tr>
-      <td><%= row["game"] %></td>
+      <td><%= game.short_name %></td>
       <% @users.each do |user| %>
-        <td><%= row[user.email] %></td>
+        <% pick = game.get_user_pick(user) %>
+        <td><%= (pick) ? pick.team.fullname.titleize : 'N/A' %></td>
       <% end %>
     </tr>
   <% end %>
