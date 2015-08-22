@@ -1,28 +1,22 @@
-== README
+# Rail Nightly Pickems
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The rails deployment of my *Nightly Pickems* app.
 
-Things you may want to cover:
+## Nightly Pickems
 
-* Ruby version
+The premise is simple. A user can create an account and log into the web app. NHL games for each night of the hockey season are listed. The user can pick who they think will win each of these NHL games. Picks are locked in place at game time.
 
-* System dependencies
+This system allows users to create competitions between friends and see who can most accuratly predict the winner of NHL games.
 
-* Configuration
+## Feauture features
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+ - The ability to have an admin enter game scores (In progress)
+ - The ability to automatically gather game scores (Being Researched. Would replace the above)
+ - The ability to create a league or group and invite friends
+ - The ability to add a points system (Dependent on the above)
+ - User profiles
+ - Trash talk forums
+ - Picking statistics
+ - Autoupdating for future seasons
+ - More sports/leagues (possibly from user driven data)
+ - Ability for specific users to write recap blogs/updates to the homepage
