@@ -28,6 +28,7 @@ class PicksController < ApplicationController
   end
 
   def index
+    @path = "/picks"
     @day = params["day"].to_i
     if !@day || @day < 1
       @day = 1

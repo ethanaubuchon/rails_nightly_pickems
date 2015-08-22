@@ -1,0 +1,24 @@
+<% day = (date - Date.today).to_i %>
+<table class="table center">
+  <tr>
+    <td><a href=<%="#{path}?date=#{(date-1).to_s}"%>>&lt;- Prev Day</a></td>
+    <td>
+    <% if day == 0 %>
+      Today's
+    <% else %>
+     <%= pluralize(day.abs, "day") %> <%= (day > 0) ? "ago" : "from now"  %>
+    <% end %>
+    <br/>
+    <input id="game-day" class="center" type="date" value=<%= date %>>
+    </td>
+    <td><a href=<%="#{path}?date=#{(date+1).to_s}"%>>Next Day -&gt;</a></td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  $("#game-day").on("change", function() {
+    console.log("date change");
+    var date = $(this).val();
+    window.location.href = '<%="#{path}?date="%>'+date
+  })
+</script>

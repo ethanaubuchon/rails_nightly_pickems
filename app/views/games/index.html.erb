@@ -1,20 +1,6 @@
 <h1>Games</h1>
 
-<table class="table center">
-  <tr>
-    <td><%= link_to "<- Prev Day", games_path(:day => (@day+1)) %></td>
-    <td>
-    <% if @day == 0 %>
-      Today's
-    <% else %>
-      Games <%= pluralize(@day.abs, "day") %> <%= "ago" if @day > 0 %>
-    <% end %>
-    <br/>
-    <input id="game-day" type="date" value=<%= @day.days.ago.to_date %>>
-    </td>
-    <td><%= link_to "Next Day ->", games_path(:day => (@day-1)) %></td>
-  </tr>
-</table>
+<%= render partial: "shared/datepicker", locals: {date: @date, path: @path} %>
 
 <table class="table">
   <thead>
@@ -58,10 +44,6 @@
 
 <script>
   var token = "<%= form_authenticity_token %>";
-  $("#game-day").on("change", function() {
-    var date = $(this).val();
-    window.location.href = "/games?date="+date
-  })
   $(".pick-team-link").on("click", function() {
     if ($(this).attr("disabled") == "disabled") {
       return;

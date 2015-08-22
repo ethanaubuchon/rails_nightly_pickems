@@ -1,26 +1,6 @@
 <h1>Picks</h1>
 
-<table class="table center">
-  <tr>
-    <td><%= link_to "<- Prev Day", picks_path(:day => (@day+1)) %></td>
-    <td>
-    <% if @day == 0 %>
-      Today
-    <% elsif @day > 0 %>
-      Games <%= pluralize(@day.abs, "day") %> ago
-    <% else %>
-      Games in <%= pluralize(@day.abs, "day") %>
-    <% end %>
-    <br/>
-    <%= @day.days.ago.to_date %>
-    </td>
-    <% if @day > 1 %>
-      <td><%= link_to "Next Day ->", picks_path(:day => (@day-1)) %></td>
-    <% else %>
-      <td colspan="1"></td>
-    <% end %>
-  </tr>
-</table>
+<%= render partial: "shared/datepicker", locals: {day: @day, path: @path} %>
 
 <table class="table">
   <thread>

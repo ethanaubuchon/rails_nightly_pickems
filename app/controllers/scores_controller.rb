@@ -4,6 +4,7 @@ class ScoresController < ApplicationController
   # GET /scores
   # GET /scores.json
   def index
+    @path = "/scores"
     @day = params["day"].to_i
     if !@day
       @day = 0
