@@ -14,5 +14,7 @@ game_data.each do |data|
   date = (data["date"]+" "+data["time"]).to_datetime.change(offset: "-0400")
   home_team = Team.find_by(short: data["home_team"])
   away_team = Team.find_by(short: data["away_team"])
-  Game.create!(home_team_id: home_team.id, away_team_id: away_team.id, game_time: date)
+  game = Game.create!(game_time: date)
+  GameTeam.create!(game: game, team: home_team, home_team: true)
+  GameTeam.create!(game: game, team: away_team, home_team: false)
 end
