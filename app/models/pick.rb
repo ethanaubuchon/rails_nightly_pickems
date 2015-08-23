@@ -2,16 +2,16 @@
 #
 # Table name: picks
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  game_id    :integer
-#  created_at :datetime
-#  updated_at :datetime
-#  team_id    :integer
+#  id            :integer          not null, primary key
+#  user_id       :integer
+#  game_id       :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#  team_id       :integer
+#  game_teams_id :integer
 #
 
 class Pick < ActiveRecord::Base
   belongs_to :user
-  belongs_to :game
-  belongs_to :team
+  belongs_to :game_team
 end

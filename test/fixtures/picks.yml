@@ -2,12 +2,13 @@
 #
 # Table name: picks
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  game_id    :integer
-#  created_at :datetime
-#  updated_at :datetime
-#  team_id    :integer
+#  id            :integer          not null, primary key
+#  user_id       :integer
+#  game_id       :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#  team_id       :integer
+#  game_teams_id :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

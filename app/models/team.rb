@@ -14,8 +14,7 @@
 #
 
 class Team < ActiveRecord::Base
-  has_many :games
-  has_many :picks
+  has_many :game_teams
 
   def fullname
     return "#{self.city} #{self.name}"
