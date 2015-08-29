@@ -6,7 +6,7 @@
     <% if day == 0 %>
       Today's
     <% else %>
-     <%= pluralize(day.abs, "day") %> <%= (day > 0) ? "ago" : "from now"  %>
+     <%= pluralize(day.abs, "day") %> <%= (day < 0) ? "ago" : "from now"  %>
     <% end %>
     <br/>
     <input id="game-day" class="center" type="date" value=<%= date %>>
