@@ -20,7 +20,7 @@
       <td><%= game.short_name %></td>
       <% @users.each do |user| %>
         <% pick = game.get_user_pick(user) %>
-        <td><%= (pick) ? pick.team.fullname.titleize : 'N/A' %></td>
+        <td><%= (pick) ? pick.game_team.team.fullname.titleize : 'N/A' %></td>
       <% end %>
     </tr>
   <% end %>

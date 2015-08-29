@@ -11,7 +11,7 @@ class PicksController < ApplicationController
       @date = Date.today
     end
 
-    @games = Game.includes(:picks => :team).where(
+    @games = Game.includes(:game_teams => [:team, :picks]).where(
       game_time: (@date)..(@date+1)
     ).order("game_time ASC")
   end
