@@ -16,20 +16,18 @@
       <tr class="game-row">
         <td><%= game.game_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %></td>
         <td>
-          <button class="pick-team-link" <%= "disabled" if game.started? %> data-teamid=<%= game.away_team.id %> data-gameid=<%= game.id %>>
-            <%= game.away_team.city.titleize %>
-            <%= game.away_team.name.titleize %>
+          <button class="pick-team-link" <%= "disabled" if game.started? %> data-gameteamid=<%= game.away_game_team.id %>>
+            <%= game.away_team.fullname.titleize %>
           </button>
         </td>
         <td> @ <td>
         <td>
-          <button class="pick-team-link" <%= "disabled" if game.started? %> data-teamid=<%= game.home_team.id %> data-gameid=<%= game.id %>>
-            <%= game.home_team.city.titleize %>
-            <%= game.home_team.name.titleize %>
+          <button class="pick-team-link" <%= "disabled" if game.started? %> data-gameteamid=<%= game.home_game_team.id %>>
+            <%= game.home_team.fullname.titleize %>
           </button>
         </td>
-        <% if game.picks.find_by(user_id: current_user.id) %>
-          <td class="message">You picked the team <%= game.picks.find_by(user_id: current_user.id).team.name.titleize %>!</td>
+        <% if pick = game.get_user_pick(current_user) %>
+          <td class="message">You picked the team <%= pick.game_team.team.name.titleize %>!</td>
         <% elsif game.started? %>
           <td class="message">You missed the game start time. No pick for you!</td>
         <% else %>
@@ -49,14 +47,11 @@
       return;
     }
     var row = $(this).parents(".game-row");
-    console.log("clicked");
-    var game_id = $(this).data("gameid");
-    var team_id = $(this).data("teamid");
+    var game_team_id = $(this).data("gameteamid");
     $.post( 
       "/picks", 
       { 
-        team_id: team_id,
-        game_id: game_id,
+        game_team_id: game_team_id,
         authenticity_token: "<%= form_authenticity_token %>"
       }, function( data ) {
         row.find("td.message").text(data.message)

@@ -2,18 +2,32 @@
 #
 # Table name: games
 #
-#  id           :integer          not null, primary key
-#  game_time    :datetime
-#  home_team_id :integer
-#  away_team_id :integer
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id         :integer          not null, primary key
+#  game_time  :datetime
+#  created_at :datetime
+#  updated_at :datetime
 #
 
 class Game < ActiveRecord::Base
   has_many :game_teams
   has_many :picks
   has_one  :score
+
+  def home_team
+    return self.home_game_team.team
+  end
+
+  def home_game_team
+    return game_teams.order("home_team DESC").take
+  end
+
+  def away_team
+    return self.away_game_team.team
+  end
+
+  def away_game_team
+    return game_teams.order("home_team ASC").take
+  end
 
   def started?
     if (0.days.ago.in_time_zone("Eastern Time (US & Canada)") > self.game_time.in_time_zone("Eastern Time (US & Canada)"))
@@ -42,7 +56,7 @@ class Game < ActiveRecord::Base
       raise "Expected User or Integer. Received #{user.class.name}"
     end
 
-    return self.picks.find_by(user_id: user_id)
+    return Pick.where(user_id: user_id, game_team_id: self.game_teams).first
   end
 
   def fullname

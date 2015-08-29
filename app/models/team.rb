@@ -3,13 +3,13 @@
 # Table name: teams
 #
 #  id         :integer          not null, primary key
-#  name       :string(255)
-#  city       :string(255)
-#  short      :string(255)
+#  name       :string
+#  city       :string
+#  short      :string
 #  created_at :datetime
 #  updated_at :datetime
-#  conference :string(255)
-#  division   :string(255)
+#  conference :string
+#  division   :string
 #  logo       :string
 #
 
