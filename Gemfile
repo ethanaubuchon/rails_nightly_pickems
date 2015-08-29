@@ -18,3 +18,4 @@ gem 'devise'
 gem 'annotate'
 gem 'pundit'
 gem "bower-rails", "~> 0.10.0"
+gem 'jquery-rails'
