@@ -1,0 +1,26 @@
+.nav * {
+  margin: 0;
+  padding: 0;
+}
+
+.nav {
+  margin: 0;
+  background-color: #AAA;
+}
+
+.nav ul li {
+  float: right;
+  list-style-type: none;
+}
+
+.nav ul li a, .nav .nav-title {
+  display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 15px 20px;
+  text-decoration: none;
+  color: white;
+}
+
+.nav ul li a:hover {
+
+}
