@@ -14,15 +14,14 @@
  *= require_self
  */
 
-@import url("bootstrap.min.css");
-@import url("sb-admin.css");
 
-body #wrapper {
-    padding: 0;
+body {
+  padding: 0;
+  margin: 0;
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 }
 
 input::-webkit-outer-spin-button, /* Removes arrows */
