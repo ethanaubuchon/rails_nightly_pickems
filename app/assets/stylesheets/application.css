@@ -15,9 +15,11 @@
  */
 
 
-body {
+html, body {
   padding: 0;
   margin: 0;
+  height: 100%;
+  background-color: #666;
 }
 
 .center {
@@ -29,4 +31,76 @@ input::-webkit-inner-spin-button, /* Removes arrows */
 input::-webkit-clear-button { /* Removes blue cross */
   -webkit-appearance: none;
   margin: 0;
+}
+
+#page-wrapper {
+	min-height:100%;
+	position:relative;
+	padding: 0;
+	margin: 0;
+}
+
+#page-wrapper .alert {
+	display: none;
+	padding: 3px;
+	text-align: center;
+	background-color: white;
+}
+
+.content {
+	margin: 0;
+	padding: 0;
+	background-color: #666;
+	border-width: 1px 0px 0px 0px;
+	border-style: solid;
+	border-color: #999;
+	height: 100%;
+	padding-bottom:60px;   /* Height of the footer */
+}
+
+.focus-box {
+	border-width: 2px;
+	border-color: #888;
+	border-radius: 5px;
+	border-style: solid;
+	padding: 10px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #AAA;
+	width: 300px;
+}
+
+.focus-box table.center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.focus-box table.center input {
+	width: 250px;
+	height: 40px;
+	margin: 3px;
+	padding: 0px 10px 0px 10px;
+	border: 0;
+	border-radius: 3px;
+	outline: none;
+	font-size: 16px;
+}
+
+.focus-box table.center input[type="email"],
+.focus-box table.center input[type="text"],
+.focus-box table.center input[type="password"],
+.focus-box table.center input[type="number"] {
+	width: 230px;
+}
+
+.focus-box a {
+	color: #333;
+}
+
+.focus-box h1 {
+	margin: 0;
+	padding: 5px;
+	color: #333;
 }
