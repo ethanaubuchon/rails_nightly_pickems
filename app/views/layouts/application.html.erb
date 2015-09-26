@@ -6,6 +6,18 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon.ico' %>
+  
+  <% if notice || alert %>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      $("#page-wrapper .alert").show('blind', {}, 500, function() {
+        setTimeout(function() {
+            $("#page-wrapper .alert").hide('blind', {}, 500);
+        }, 5000);
+      });
+    });
+    </script>
+  <% end %>
 </head>
 <body>
 
@@ -18,9 +30,12 @@
       <% if alert %>
         <div class="alert alert-danger"><p class="alert"><%= alert %></p></div>
       <% end %>
-      <div class="container-fluid">
+      <div class="content">
         <%= yield %>
       </div>
+    </div>
+    <div class="footer">
+      <%= render "layouts/footer" %>
     </div>
   </div>
 
