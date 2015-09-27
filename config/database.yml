@@ -24,6 +24,7 @@ production:
   adapter: postgresql
   encoding: unicode
   database: nightly_pickems_production
+  host: localhost
   pool: 5
   username: <%= ENV["DB_USER"] %>
   password: <%= ENV["DB_PASSWORD"] %>
