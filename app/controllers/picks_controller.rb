@@ -7,14 +7,14 @@ class PicksController < ApplicationController
     @users = User.all
     if (params["date"])
       @date = Date.parse(params["date"])
-      date_for_range = DateTime.parse(params["date"]).change(:offset => "-0400").beginning_of_day
+      date_for_range = DateTime.parse(params["date"]).change(:offset => "-0400")
     else
       @date = Date.today
-      date_for_range = DateTime.new.change(:offset => "-0400").beginning_of_day
+      date_for_range = DateTime.now.change(:offset => "-0400")
     end
 
     @games = Game.includes(:game_teams => [:team, :picks]).where(
-      game_time: (date_for_range)..(date_for_range+1.day)
+      game_time: (date_for_range.beginning_of_day)..(date_for_range.end_of_day)
     ).order("game_time ASC")
   end
 
