@@ -1,11 +1,13 @@
 .footer {
-	position:absolute;
+	position:fixed;
 	bottom:0;
 	height:60px;   /* Height of the footer */
 	width: 100%;
 	padding-left: 5px;
 	padding-right: 5px;
 	text-align: center;
+	background-color: #666;
+
 }
 
 .footer .center {
