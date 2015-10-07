@@ -28,7 +28,7 @@ class PicksController < ApplicationController
 
       respond_to do |format|
         format.json {
-          render :json => {message: "You picked " + @game_team.team.fullname.titleize}
+          render :json => {message: "You picked #{@game_team.team.fullname.titleize}"}
         }
       end
     rescue => e
