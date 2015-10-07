@@ -87,6 +87,11 @@ input::-webkit-clear-button { /* Removes blue cross */
 	font-size: 16px;
 }
 
+.game-box table .pick-col {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
 .game-box table .game-col:nth-child(1),
 .game-box table .game-col:nth-child(2),
 .game-box table .game-col:nth-child(4),
