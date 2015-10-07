@@ -1,28 +1,30 @@
-<h1>Picks</h1>
+<div class="center focus-box game-box">
+  <h1>Picks</h1>
 
-<%= render partial: "shared/datepicker", locals: {date: @date, path: @path} %>
+  <%= render partial: "shared/datepicker", locals: {date: @date, path: @path} %>
 
-<table class="table">
-  <thread>
-    <tr>
-      <th>
-        Game
-      </th>
-      <% @users.each do |user| %>
-        <th><%= user.displayname %>'s Pick</th>
-      <% end %>
-    </tr>
-  </thread>
+  <table class="center">
+    <thread>
+      <tr>
+        <th class="pick-col">
+          Game
+        </th>
+        <% @users.each do |user| %>
+          <th class="pick-col"><%= user.displayname %>'s Pick</th>
+        <% end %>
+      </tr>
+    </thread>
 
-  <tbody>
-  <% @games.each do |game| %>
-    <tr>
-      <td><%= game.short_name %></td>
-      <% @users.each do |user| %>
-        <% pick = game.get_user_pick(user) %>
-        <td><%= (pick && game.game_time.to_i < DateTime.now.change(:offset => "-0400").to_i) ? pick.game_team.team.fullname.titleize : 'N/A' %></td>
-      <% end %>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+    <tbody>
+    <% @games.each do |game| %>
+      <tr>
+        <td class="pick-col"><%= game.short_name %></td>
+        <% @users.each do |user| %>
+          <% pick = game.get_user_pick(user) %>
+          <td class="pick-col"><%= (pick && game.game_time.to_i < DateTime.now.change(:offset => "-0400").to_i) ? pick.game_team.team.fullname.titleize : 'N/A' %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

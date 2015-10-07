@@ -21,6 +21,7 @@ html, body {
   margin: 0;
   height: 100%;
   background-color: #666;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .center {
@@ -80,14 +81,33 @@ input::-webkit-clear-button { /* Removes blue cross */
 	table-layout: fixed;
 }
 
-.game-box table td:nth-child(1),
-.game-box table td:nth-child(2),
-.game-box table td:nth-child(4),
-.game-box table td:nth-child(5) {
-  width: 120px;
+.game-box table .game-col,
+.game-box table .pick-col {
+	height: 45px;
+	font-size: 16px;
 }
-.game-box table td:nth-child(3) {
+
+.game-box table .game-col:nth-child(1),
+.game-box table .game-col:nth-child(2),
+.game-box table .game-col:nth-child(4),
+.game-box table .game-col:nth-child(5) {
+  width: 250px;
+}
+
+.game-box table .game-col:nth-child(3) {
   width: 10px;
+}
+
+.game-box table button.pick-team-link {
+	width: 245px;
+	height: 40px;
+	margin: 3px;
+	padding: 0px 10px 0px 10px;
+	border: 0;
+	border-radius: 3px;
+	outline: none;
+	font-size: 16px;
+	background-color: white
 }
 
 
@@ -126,4 +146,10 @@ input::-webkit-clear-button { /* Removes blue cross */
 	margin: 0;
 	padding: 5px;
 	color: #333;
+}
+
+.day-selector a {
+	font-size: 16px;
+	padding: 10px;
+	height: 40px;
 }

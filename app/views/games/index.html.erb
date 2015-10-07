@@ -6,33 +6,37 @@
   <table class="center">
     <thead>
       <tr>
-        <th>Game time</th>
-        <th colspan="3"></th>
-        <th>Pick</th>
+        <th class="game-col">Game time</th>
+        <th class="game-col">Away</th>
+        <th class="game-col">@</th>
+        <th class="game-col">Home</th>
+        <th class="game-col">Pick</th>
       </tr>
     </thead>
 
     <tbody>
       <% @games.each do |game| %>
         <tr class="game-row">
-          <td><%= game.game_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %></td>
-          <td>
+          <td class="game-col">
+            <%= game.game_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %> Eastern
+          </td>
+          <td class="game-col">
             <button class="pick-team-link" <%= "disabled" if game.started? %> data-gameteamid=<%= game.away_game_team.id %>>
               <%= game.away_team.fullname.titleize %>
             </button>
           </td>
-          <td> @ <td>
-          <td>
+          <td class="game-col"> @ </td>
+          <td class="game-col">
             <button class="pick-team-link" <%= "disabled" if game.started? %> data-gameteamid=<%= game.home_game_team.id %>>
               <%= game.home_team.fullname.titleize %>
             </button>
           </td>
           <% if pick = game.get_user_pick(current_user) %>
-            <td class="message">You picked the team <%= pick.game_team.team.name.titleize %>!</td>
+            <td class="message game-col">You picked the team <%= pick.game_team.team.name.titleize %>!</td>
           <% elsif game.started? %>
-            <td class="message">You missed the game start time. No pick for you!</td>
+            <td class="message game-col">You missed the game start time. No pick for you!</td>
           <% else %>
-              <td class="message"></td>
+              <td class="message game-col"></td>
           <% end %>
         </tr>
       <% end %>
