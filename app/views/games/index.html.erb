@@ -14,7 +14,7 @@
   <tbody>
     <% @games.each do |game| %>
       <tr class="game-row">
-        <td><%= game.game_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %></td>
+        <td><%= game.game_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %> Eastern</td>
         <td>
           <button class="pick-team-link" <%= "disabled" if game.started? %> data-gameteamid=<%= game.away_game_team.id %>>
             <%= game.away_team.fullname.titleize %>
@@ -48,9 +48,9 @@
     }
     var row = $(this).parents(".game-row");
     var game_team_id = $(this).data("gameteamid");
-    $.post( 
-      "/picks", 
-      { 
+    $.post(
+      "/picks",
+      {
         game_team_id: game_team_id,
         authenticity_token: "<%= form_authenticity_token %>"
       }, function( data ) {

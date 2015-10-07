@@ -8,12 +8,14 @@ class GamesController < ApplicationController
     @path = "/games"
     if (params["date"])
       @date = Date.parse(params["date"])
+      date_for_range = DateTime.parse(params["date"]).change(:offset => "-0400").beginning_of_day
     else
       @date = Date.today
+      date_for_range = DateTime.new.change(:offset => "-0400").beginning_of_day
     end
 
     @games = Game.includes(:game_teams => :team).where(
-      game_time: (@date)..(@date+1)
+      game_time: (date_for_range)..(date_for_range+1.day)
     ).order("game_time ASC")
   end
 
