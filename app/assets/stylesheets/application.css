@@ -72,6 +72,25 @@ input::-webkit-clear-button { /* Removes blue cross */
 	background-color: #AAA;
 }
 
+.game-box {
+	width: 80%;
+}
+
+.game-box table {
+	table-layout: fixed;
+}
+
+.game-box table td:nth-child(1),
+.game-box table td:nth-child(2),
+.game-box table td:nth-child(4),
+.game-box table td:nth-child(5) {
+  width: 120px;
+}
+.game-box table td:nth-child(3) {
+  width: 10px;
+}
+
+
 .signin-box {
 	width: 300px;
 }

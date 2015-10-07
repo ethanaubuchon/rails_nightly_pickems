@@ -1,44 +1,44 @@
-<h1>Games</h1>
+<div class="center focus-box game-box">
+  <h1>Games</h1>
 
-<%= render partial: "shared/datepicker", locals: {date: @date, path: @path} %>
+  <%= render partial: "shared/datepicker", locals: {date: @date, path: @path} %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Game time</th>
-      <th colspan="4"></th>
-      <th>Pick</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @games.each do |game| %>
-      <tr class="game-row">
-        <td><%= game.game_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %> Eastern</td>
-        <td>
-          <button class="pick-team-link" <%= "disabled" if game.started? %> data-gameteamid=<%= game.away_game_team.id %>>
-            <%= game.away_team.fullname.titleize %>
-          </button>
-        </td>
-        <td> @ <td>
-        <td>
-          <button class="pick-team-link" <%= "disabled" if game.started? %> data-gameteamid=<%= game.home_game_team.id %>>
-            <%= game.home_team.fullname.titleize %>
-          </button>
-        </td>
-        <% if pick = game.get_user_pick(current_user) %>
-          <td class="message">You picked the team <%= pick.game_team.team.name.titleize %>!</td>
-        <% elsif game.started? %>
-          <td class="message">You missed the game start time. No pick for you!</td>
-        <% else %>
-            <td class="message"></td>
-        <% end %>
+  <table class="center">
+    <thead>
+      <tr>
+        <th>Game time</th>
+        <th colspan="3"></th>
+        <th>Pick</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @games.each do |game| %>
+        <tr class="game-row">
+          <td><%= game.game_time.in_time_zone("Eastern Time (US & Canada)").strftime("%I:%M%p") %></td>
+          <td>
+            <button class="pick-team-link" <%= "disabled" if game.started? %> data-gameteamid=<%= game.away_game_team.id %>>
+              <%= game.away_team.fullname.titleize %>
+            </button>
+          </td>
+          <td> @ <td>
+          <td>
+            <button class="pick-team-link" <%= "disabled" if game.started? %> data-gameteamid=<%= game.home_game_team.id %>>
+              <%= game.home_team.fullname.titleize %>
+            </button>
+          </td>
+          <% if pick = game.get_user_pick(current_user) %>
+            <td class="message">You picked the team <%= pick.game_team.team.name.titleize %>!</td>
+          <% elsif game.started? %>
+            <td class="message">You missed the game start time. No pick for you!</td>
+          <% else %>
+              <td class="message"></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <script>
   var token = "<%= form_authenticity_token %>";
