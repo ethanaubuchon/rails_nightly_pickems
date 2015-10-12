@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150829130410) do
+ActiveRecord::Schema.define(version: 20151012201312) do
 
   create_table "game_teams", force: :cascade do |t|
     t.integer  "game_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150829130410) do
     t.boolean  "overtime"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "differential"
   end
 
   create_table "teams", force: :cascade do |t|
