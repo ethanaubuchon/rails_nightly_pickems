@@ -29,5 +29,6 @@ class StandingsController < ApplicationController
       u['nopicks'] = games_this_week.count - (wins + losses)
       @users.push(u)
     end
+    @users.sort{|a,b| a.wins <=> b.wins}
   end
 end
