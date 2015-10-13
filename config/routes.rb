@@ -11,5 +11,5 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations' }
 
-  root 'standings#week'
+  root 'games#index'
 end
