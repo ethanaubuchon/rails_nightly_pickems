@@ -3,10 +3,9 @@ class StandingsController < ApplicationController
 
   def week
     now = DateTime.now.change(:offset => "-0400")
-    time = (now - now.wday).end_of_day
-    if params["week"]
-      time += params["week"].to_i.weeks
-    end
+
+    @week = params["week"].to_i | 0
+    time = (now - now.wday).end_of_day + @week.to_i.weeks
 
     @users = []
 
@@ -29,16 +28,4 @@ winning_game_teams_this_week.each{ |g| puts g.id }
       @users.push(u)
     end
   end
-
-  # def total
-  #   # @users = User.all
-
-  #   # @user_points = []
-
-  #   # @users.each do |user|
-  #   #   points.name = user.displayname
-
-
-  #   # end
-  # end
 end

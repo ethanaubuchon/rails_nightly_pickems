@@ -1,5 +1,15 @@
 <div class="center focus-box game-box">
-  <h1>This Week Standings</h1>
+  <h1>Standings</h1>
+
+  <a href="/standings/week?week=<%= @week-1 %>">Previous</a>
+  <% if @week == 0 %>
+    This Week
+  <% elsif @week > 0 %>
+    <%= pluralize(@week.abs, 'Week') %> From Now
+  <% elsif @week < 0 %>
+    <%= pluralize(@week.abs, 'Week') %> Ago
+  <% end %>
+  <a href="/standings/week?week=<%= @week+1 %>">Next</a>
 
   <table class="center">
     <thread>
