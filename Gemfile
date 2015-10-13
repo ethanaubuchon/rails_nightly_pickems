@@ -20,6 +20,8 @@ gem 'pundit'
 gem "bower-rails", "~> 0.10.0"
 gem 'jquery-rails'
 
+gem 'hirb'
+
 group :production do
   gem 'unicorn'
   gem 'pg'
