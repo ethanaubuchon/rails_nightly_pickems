@@ -11,4 +11,5 @@
 #
 
 class Result < ActiveRecord::Base
+  belongs_to :game_team
 end

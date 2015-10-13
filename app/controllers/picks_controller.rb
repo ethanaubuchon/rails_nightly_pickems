@@ -22,6 +22,8 @@ class PicksController < ApplicationController
     begin
       @game_team = GameTeam.find(params["game_team_id"].to_i)
 
+      raise "Game time passed already... cheater!" if @game_team.game.game_time.to_i < DateTime.now.change(:offset => "-0400").to_i
+
       @pick = Pick.where(game_team: Game.find(@game_team.game.id).game_teams, user: current_user).first_or_create
       @pick.game_team = @game_team
       @pick.save!
@@ -35,7 +37,7 @@ class PicksController < ApplicationController
       p e
       respond_to do |format|
         format.json {
-          render status: 400, :json => e
+          render status: 400, :json => {message: e.to_s}
         }
       end
     end

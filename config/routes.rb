@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :picks
 
+  get '/standings/week' => 'standings#week'
+
   devise_for :users, :controllers => { registrations: 'registrations' }
 
   root 'games#index'

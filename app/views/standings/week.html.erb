@@ -1,0 +1,25 @@
+<div class="center focus-box game-box">
+  <h1>This Week Standings</h1>
+
+  <table class="center">
+    <thread>
+      <tr>
+        <th class="pick-col">User</th>
+        <th class="pick-col">Wins</th>
+        <th class="pick-col">Losses</th>
+        <th class="pick-col">No Picks</th>
+      </tr>
+    </thread>
+
+    <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td class="pick-col"><%= user['displayname'] %></td>
+        <td class="pick-col"><%= user['wins'] %></td>
+        <td class="pick-col"><%= user['losses'] %></td>
+        <td class="pick-col"><%= user['nopicks'] %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
