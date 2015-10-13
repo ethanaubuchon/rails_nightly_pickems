@@ -14,14 +14,16 @@ class StandingsController < ApplicationController
       id: Result.where(win: true).select(:game_team_id),
       game_id: games_this_week.select(:id)
     })
-puts "#{params['week']}!!!!!!!!!!!!!!!!!!!!!!!!!!"
-winning_game_teams_this_week.each{ |g| puts g.id }
+    losing_game_teams_this_week = GameTeam.where({
+      id: Result.where(win: false).select(:game_team_id),
+      game_id: games_this_week.select(:id)
+    })
     User.all.each do |user|
       u = {
         'displayname' => user.displayname,
       }
       wins = Pick.where(user_id: user.id, game_team_id: winning_game_teams_this_week).count
-      losses = Pick.where(user_id: user.id).where.not(game_team_id: winning_game_teams_this_week).count
+      losses = Pick.where(user_id: user.id, game_team_id: losing_game_teams_this_week).count
       u['wins'] = wins
       u['losses'] = losses
       u['nopicks'] = games_this_week.count - (wins + losses)
