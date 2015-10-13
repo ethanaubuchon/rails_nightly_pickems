@@ -26,7 +26,7 @@ class StandingsController < ApplicationController
       losses = Pick.where(user_id: user.id, game_team_id: losing_game_teams_this_week).count
       u['wins'] = wins
       u['losses'] = losses
-      u['nopicks'] = games_this_week.count - (wins + losses)
+      u['nopicks'] = winning_game_teams_this_week.count - (wins + losses)
       @users.push(u)
     end
   end
