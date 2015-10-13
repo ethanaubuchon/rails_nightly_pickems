@@ -22,7 +22,7 @@
     </thread>
 
     <tbody>
-    <% @users.each do |user| %>
+    <% @users.sort{|a,b| a.wins <=> b.wins}.each do |user| %>
       <tr>
         <td class="pick-col"><%= user['displayname'] %></td>
         <td class="pick-col"><%= user['wins'] %></td>
