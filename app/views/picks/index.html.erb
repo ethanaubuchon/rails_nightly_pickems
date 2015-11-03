@@ -1,7 +1,7 @@
 <div class="center focus-box game-box">
   <h1>Picks</h1>
 
-  <%= render partial: "shared/datepicker", locals: {date: @date, path: @path} %>
+  <%= render partial: "shared/datepicker", locals: {date: @datetime.to_date, path: @path} %>
 
   <table class="center">
     <thread>
@@ -21,7 +21,7 @@
         <td class="pick-col"><%= game.short_name %></td>
         <% @users.each do |user| %>
           <% pick = game.get_user_pick(user) %>
-          <td class="pick-col"><%= (pick && game.game_time.to_i < DateTime.now.change(:offset => "-0400").to_i) ? pick.game_team.team.fullname.titleize : 'N/A' %></td>
+          <td class="pick-col"><%= (pick && game.game_time.to_i < DateTime.now.in_time_zone.to_i) ? pick.game_team.team.fullname.titleize : 'N/A' %></td>
         <% end %>
       </tr>
     <% end %>

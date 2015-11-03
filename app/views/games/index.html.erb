@@ -1,7 +1,7 @@
 <div class="center focus-box game-box">
   <h1>Games</h1>
 
-  <%= render partial: "shared/datepicker", locals: {date: @date, path: @path} %>
+  <%= render partial: "shared/datepicker", locals: {date: @datetime.to_date, path: @path} %>
 
   <table class="center">
     <thead>

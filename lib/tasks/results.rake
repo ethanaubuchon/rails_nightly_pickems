@@ -6,7 +6,7 @@ namespace :results do
     data.each do |result|
       g = Game.where(id: GameTeam.where(team_id: Team.find_by(short: result["away_team"]).id).select(:game_id))
         .where(id: GameTeam.where(team_id: Team.find_by(short: result["home_team"]).id).select(:game_id))
-        .where(game_time: DateTime.parse(result["date"] + " " + result["time"]).change(:offset => "-0400"))
+        .where(game_time: DateTime.parse(result["date"] + " " + result["time"]).in_time_zone)
 
 
       diff = result["home_score"].to_i - result["away_score"].to_i
