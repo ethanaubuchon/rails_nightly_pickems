@@ -26,3 +26,5 @@ group :production do
   gem 'unicorn'
   gem 'pg'
 end
+
+gem 'whenever', :require => false

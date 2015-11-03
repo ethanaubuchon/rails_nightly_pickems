@@ -2,7 +2,7 @@ class StandingsController < ApplicationController
   before_action :authenticate_user!
 
   def week
-    now = DateTime.now.change(:offset => "-0400")
+    now = DateTime.now.in_time_zone
 
     @week = params["week"].to_i | 0
     time = (now - now.wday).end_of_day + @week.to_i.weeks
