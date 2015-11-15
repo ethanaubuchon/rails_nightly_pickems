@@ -5,11 +5,11 @@ class StandingsController < ApplicationController
     now = DateTime.now.in_time_zone
 
     @week = params["week"].to_i | 0
-    time = (now - now.wday).end_of_day + @week.to_i.weeks
+    time = (now - ((now.wday > 0) ? now.wday : 7).days).end_of_day + @week.to_i.weeks
 
     @users = []
 
-    games_this_week = Game.where(game_time: time..(time+1.week))
+    games_this_week = Game.where(game_time: time..(time+1.week).end_of_day)
     winning_game_teams_this_week = GameTeam.where({
       id: Result.where(win: true).select(:game_team_id),
       game_id: games_this_week.select(:id)
