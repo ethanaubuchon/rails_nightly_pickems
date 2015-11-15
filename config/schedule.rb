@@ -7,7 +7,7 @@
 #
 # set :output, "/path/to/my/cron_log.log"
 #
-every 2.hours do
+every 15.minutes do
    rake "results:update"
 end
 #
