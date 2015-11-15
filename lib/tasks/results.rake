@@ -4,10 +4,11 @@ namespace :results do
     data = JSON.parse(value)
 
     data.each do |result|
+      offset = DateTime.parse(result['date'] + ' ' + result['time']).in_time_zone.formatted_offset.tr(':', '')
+
       g = Game.where(id: GameTeam.where(team_id: Team.find_by(short: result["away_team"]).id).select(:game_id))
         .where(id: GameTeam.where(team_id: Team.find_by(short: result["home_team"]).id).select(:game_id))
-        .where(game_time: DateTime.parse(result["date"] + " " + result["time"]).in_time_zone)
-
+        .where(game_time: DateTime.parse(result["date"] + " " + result["time"]).change(offset: offset))
 
       diff = result["home_score"].to_i - result["away_score"].to_i
 
