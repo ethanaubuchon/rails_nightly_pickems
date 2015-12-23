@@ -28,3 +28,5 @@ group :production do
 end
 
 gem 'whenever', :require => false
+
+gem 'seed_dump'
