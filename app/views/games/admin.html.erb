@@ -1,14 +1,14 @@
 <div class="center focus-box game-box">
   <table class="center">
     <tr>
-      <td>Home Team</td>
       <td>Away Team</td>
+      <td>Home Team</td>
       <td>Date</td>
       <td>Time</td>
     </tr>
     <tr>
       <td>
-        <select data-field-name="Home Team" id="home_team_id" class="center searchTerm gameTerm">
+        <select data-field-name="Away Team" id="away_team_id" class="center searchTerm gameTerm">
           <option value="">Any</option>
           <% @teams.each do |team| %>
             <option value='<%=team.id%>'><%= team.fullname.titleize %></option>
@@ -16,7 +16,7 @@
         </select>
       </td>
       <td>
-        <select data-field-name="Away Team" id="away_team_id" class="center searchTerm gameTerm">
+        <select data-field-name="Home Team" id="home_team_id" class="center searchTerm gameTerm">
           <option value="">Any</option>
           <% @teams.each do |team| %>
             <option value='<%=team.id%>'><%= team.fullname.titleize %></option>
@@ -67,7 +67,8 @@
         "/games",
         params,
         function( data ) {
-          message(data.message)
+          message(data.message);
+          search();
         },"json");
     }
   });
@@ -114,13 +115,12 @@
           for (var i = 0; i < data.data.length; i++) {
             var game = data.data[i];
             $('#gameResults').append('<tr id=game_' + game.id + '>');
-            console.log(game)
             if (game.game_teams[0].home_team) {
-              makeTeamsList('#game_' + game.id, 'home_team_id', game.game_teams[0].team.id);
               makeTeamsList('#game_' + game.id, 'away_team_id', game.game_teams[1].team.id);
+              makeTeamsList('#game_' + game.id, 'home_team_id', game.game_teams[0].team.id);
             } else {
-              makeTeamsList('#game_' + game.id, 'home_team_id', game.game_teams[1].team.id);
               makeTeamsList('#game_' + game.id, 'away_team_id', game.game_teams[0].team.id);
+              makeTeamsList('#game_' + game.id, 'home_team_id', game.game_teams[1].team.id);
             }
 
             var date = new Date(game.game_time)
@@ -159,7 +159,7 @@
   function makeTeamsList(selector, tag, team_id) {
     var select = '' +
     '<td>' +
-    '  <select data-id="' + tag + '" data-field-name="Home Team" class="' + tag + ' center searchTerm gameTerm">' +
+    '  <select data-id="' + team_id + '"' + tag + ' center searchTerm gameTerm">' +
     '    <% @teams.each do |team| %>' +
     '      <option value="<%=team.id%>"><%= team.fullname.titleize %></option>' +
     '    <% end %>' +
@@ -167,44 +167,7 @@
     '</td>';
 
     $(selector).append(select);
-    $(selector + ' .' + tag).val(team_id);
-    console.log('setting', selector + ' .' + tag, 'to', team_id)
+    $('[data-id="' + team_id + '"').val(team_id);
   }
-
-  var gameMarkup = '' +
-  '<tr>' +
-  '  <td>' +
-  '    <select data-field-name="Home Team" id="homeTeamId" class="center searchTerm gameTerm">' +
-  '      <option value="">Any</option>' +
-  '      <% @teams.each do |team| %>' +
-  '        <option value="<%=team.id%>"><%= team.fullname.titleize %></option>' +
-  '      <% end %>' +
-  '    </select>' +
-  '  </td>' +
-  '  <td>' +
-  '    <select data-field-name="Away Team" id="awayTeamId" class="center searchTerm gameTerm">' +
-  '      <option value="">Any</option>' +
-  '      <% @teams.each do |team| %>' +
-  '        <option value="<%=team.id%>"><%= team.fullname.titleize %></option>' +
-  '      <% end %>' +
-  '    </select>' +
-  '  </td>' +
-  '  <td>' +
-  '    <input data-field-name="Date" id="date" class="center searchTerm gameTerm" type="date"/>' +
-  '  </td>' +
-  '  <td>' +
-  '    <input data-field-name="Time" id="time" class="center searchTerm gameTerm" type="time"/>' +
-  '  </td>' +
-  '</tr>' +
-  '<tr>' +
-  '  <td></td>' +
-  '  <td>' +
-  '    <input id="createGame" type="button" value="Create" />' +
-  '  </td>' +
-  '  <td>' +
-  '    <input id="searchGame" type="button" value="Search" />' +
-  '  </td>' +
-  '  <td></td>' +
-  '</tr>';
 
 </script>
