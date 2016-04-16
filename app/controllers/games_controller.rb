@@ -17,6 +17,10 @@ class GamesController < ApplicationController
     ).order("game_time ASC")
   end
 
+  def admin
+    @teams = Team.all
+  end
+
   # GET /games/1
   # GET /games/1.json
   def show
@@ -34,12 +38,15 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    @game = Game.new(game_params)
+    @game = Game.new game_time: params["date"] + " " + params["time"]
+
+    @game.game_teams.build(team_id: params["home_team_id"], home_team: true)
+    @game.game_teams.build(team_id: params["away_team_id"], home_team: false)
 
     respond_to do |format|
       if @game.save
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
-        format.json { render :show, status: :created, location: @game }
+        format.json { render json: { message: "Created Game" } }
       else
         format.html { render :new }
         format.json { render json: @game.errors, status: :unprocessable_entity }

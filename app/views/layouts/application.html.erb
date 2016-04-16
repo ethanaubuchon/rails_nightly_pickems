@@ -6,16 +6,22 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon.ico' %>
-  
-  <% if notice || alert %>
+
     <script type="text/javascript">
-    $(document).ready(function () {
+    function message(message) {
+      $('p.alert').text(message);
       $("#page-wrapper .alert").show('blind', {}, 500, function() {
         setTimeout(function() {
             $("#page-wrapper .alert").hide('blind', {}, 500);
         }, 5000);
       });
-    });
+    }
+    </script>
+  <% if notice || alert %>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        message("<%= notice || alert %>")
+      });
     </script>
   <% end %>
 </head>
@@ -24,12 +30,7 @@
   <div id="wrapper">
     <%= render "layouts/nav" %>
     <div id="page-wrapper">
-      <% if notice %>
-        <div class="alert alert-warning"><p class="notice"><%= notice %></p></div>
-      <% end %>
-      <% if alert %>
-        <div class="alert alert-danger"><p class="alert"><%= alert %></p></div>
-      <% end %>
+      <div class="alert alert-danger"><p class="alert"></p></div>
       <div class="content">
         <%= yield %>
       </div>

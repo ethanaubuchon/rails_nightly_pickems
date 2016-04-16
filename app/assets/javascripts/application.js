@@ -14,4 +14,3 @@
 //= require jquery_ujs
 //= require jquery-ui/jquery-ui
 //= require turbolinks
-//= require_tree .

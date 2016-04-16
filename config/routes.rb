@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
   resources :scores
 
-  resources :games
+  # resources :games
+  get 'games' => 'games#index'
+  get 'admin/games' => 'games#admin'
+  post 'games' => 'games#create'
 
-  resources :teams
+  # resources :teams
 
-  resources :picks
+  # resources :picks
+  get 'picks' => 'picks#index'
+  post 'picks' => 'picks#create'
 
   get '/standings/week' => 'standings#week'
 

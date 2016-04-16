@@ -125,7 +125,8 @@ input::-webkit-clear-button { /* Removes blue cross */
 	margin-right: auto;
 }
 
-.focus-box table.center input {
+.focus-box table.center input,
+.focus-box table.center select {
 	width: 250px;
 	height: 40px;
 	margin: 3px;
@@ -139,7 +140,9 @@ input::-webkit-clear-button { /* Removes blue cross */
 .focus-box table.center input[type="email"],
 .focus-box table.center input[type="text"],
 .focus-box table.center input[type="password"],
-.focus-box table.center input[type="number"] {
+.focus-box table.center input[type="number"],
+.focus-box table.center input[type="date"],
+.focus-box table.center input[type="time"] {
 	width: 230px;
 }
 
