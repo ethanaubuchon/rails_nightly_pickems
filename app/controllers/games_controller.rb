@@ -17,7 +17,40 @@ class GamesController < ApplicationController
     ).order("game_time ASC")
   end
 
+  def search
+    puts params
+    @games = Game.includes(:game_teams => :team).all
+    if (params["date"] && params["time"])
+      date = (params["date"] + " " + params["time"]).in_time_zone
+      @games = @games.where(game_time: date)
+    elsif (params["date"])
+      date = DateTime.parse(params["date"]).end_of_day.in_time_zone.beginning_of_day
+      @games = @games.where(game_time: date..date.end_of_day)
+    end
+
+    if (params["home_team_id"])
+      @games = @games.where(id: GameTeam.where(team_id: params["home_team_id"].to_i, home_team: true).select(:game_id))
+    end
+
+    if (params["away_team_id"])
+      @games = @games.where(id: GameTeam.where(team_id: params["away_team_id"].to_i, home_team: false).select(:game_id))
+    end
+
+    respond_to do |format|
+      format.json {
+        render json: {
+          data: @games.as_json(include: {
+            game_teams: {
+              include: :team
+            }
+          })
+        }
+      }
+    end
+  end
+
   def admin
+    redirect_to root_path if current_user.role != "admin" && current_user.role != "god"
     @teams = Team.all
   end
 
@@ -38,13 +71,15 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    @game = Game.new game_time: params["date"] + " " + params["time"]
+    if current_user.role == "admin" || current_user.role == "god"
+      @game = Game.new(game_time: params["date"] + " " + params["time"])
 
-    @game.game_teams.build(team_id: params["home_team_id"], home_team: true)
-    @game.game_teams.build(team_id: params["away_team_id"], home_team: false)
+      @game.game_teams.build(team_id: params["home_team_id"], home_team: true)
+      @game.game_teams.build(team_id: params["away_team_id"], home_team: false)
+    end
 
     respond_to do |format|
-      if @game.save
+      if current_user.role == :admin || current_user.role == :god || @game.save
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
         format.json { render json: { message: "Created Game" } }
       else
@@ -73,7 +108,6 @@ class GamesController < ApplicationController
   def destroy
     @game.destroy
     respond_to do |format|
-      format.html { redirect_to games_url, notice: 'Game was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

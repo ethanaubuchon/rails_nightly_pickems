@@ -3,8 +3,10 @@ Rails.application.routes.draw do
 
   # resources :games
   get 'games' => 'games#index'
+  get 'games/search' => 'games#search'
   get 'admin/games' => 'games#admin'
   post 'games' => 'games#create'
+  delete 'games/:id(.:format)' => 'games#destroy'
 
   # resources :teams
 

@@ -8,7 +8,7 @@
     </tr>
     <tr>
       <td>
-        <select data-field-name="Home Team" id="homeTeamId" class="center searchTerm gameTerm">
+        <select data-field-name="Home Team" id="home_team_id" class="center searchTerm gameTerm">
           <option value="">Any</option>
           <% @teams.each do |team| %>
             <option value='<%=team.id%>'><%= team.fullname.titleize %></option>
@@ -16,7 +16,7 @@
         </select>
       </td>
       <td>
-        <select data-field-name="Away Team" id="awayTeamId" class="center searchTerm gameTerm">
+        <select data-field-name="Away Team" id="away_team_id" class="center searchTerm gameTerm">
           <option value="">Any</option>
           <% @teams.each do |team| %>
             <option value='<%=team.id%>'><%= team.fullname.titleize %></option>
@@ -43,12 +43,20 @@
   </table>
 </div>
 
+<div id="gameResultsBlock" class="center focus-box game-box">
+  <table id="gameResults" class="center">
+  </table>
+</div>
+
 <script type="text/javascript">
   $('#createGame').click(function () {
     var missingFields = [];
+    var params = {authenticity_token: "<%= form_authenticity_token %>"}
     $('.gameTerm').each(function () {
       if (!$(this).val()) {
         missingFields.push($(this).attr('data-field-name'));
+      } else {
+        params[$(this).attr('id')] = $(this).val();
       }
     });
 
@@ -57,15 +65,146 @@
     } else {
       $.post(
         "/games",
-        {
-          home_team_id: $('#homeTeamId').val(),
-          away_team_id: $('#awayTeamId').val(),
-          date: $('#date').val(),
-          time: $('#time').val(),
-          authenticity_token: "<%= form_authenticity_token %>"
-        }, function( data ) {
+        params,
+        function( data ) {
           message(data.message)
         },"json");
     }
   });
+
+  $('#searchGame').click(search);
+
+  $('#gameResults').on('click', '.deleteGame', function () {
+    var gameId = $(this).attr('data-game-id');
+    if (confirm('Are you sure?')) {
+      $.ajax({
+        url: '/games/' + gameId,
+        type: 'DELETE',
+        success: function() {
+          $('#game_' + gameId).remove();
+          $('.searchTerm').val('');
+        },
+        dataType: 'json'
+      });
+    }
+  });
+
+  $(document).ready(function () {
+    $('#gameResultsBlock').hide();
+  });
+
+  function search() {
+    var params = {};
+    $('.gameTerm').each(function () {
+      if ($('#time').val() && !$('#date').val) {
+        message("Cannot search for games by times without dates");
+        return;
+      }
+      if ($(this).val() && $(this).val() !== "") {
+        params[$(this).attr('id')] = $(this).val();
+      }
+    });
+    if (!params) {
+      message("Will not run search without terms");
+      return;
+    }
+    $.get('/games/search', params, function(data) {
+        if (data.data.length > 0) {
+          $('#gameResults').html('');
+          for (var i = 0; i < data.data.length; i++) {
+            var game = data.data[i];
+            $('#gameResults').append('<tr id=game_' + game.id + '>');
+            console.log(game)
+            if (game.game_teams[0].home_team) {
+              makeTeamsList('#game_' + game.id, 'home_team_id', game.game_teams[0].team.id);
+              makeTeamsList('#game_' + game.id, 'away_team_id', game.game_teams[1].team.id);
+            } else {
+              makeTeamsList('#game_' + game.id, 'home_team_id', game.game_teams[1].team.id);
+              makeTeamsList('#game_' + game.id, 'away_team_id', game.game_teams[0].team.id);
+            }
+
+            var date = new Date(game.game_time)
+            var dateStrings = [];
+            dateStrings.push(date.getFullYear());
+            dateStrings.push(((date.getMonth() + 1) < 10) ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1));
+            dateStrings.push((date.getDate() < 10) ? '0' + date.getDate() : date.getDate());
+
+            $('#game_' + game.id).append(
+              '<td>' +
+              '  <input ' +
+              '    data-field-name="Date"' +
+              '    value="' + dateStrings.join('-') + '"' +
+              '    data-id="date"' +
+              '    class="center"' +
+              '    type="date"' +
+              '  />' +
+              '</td>'
+            );
+            $('#game_' + game.id).append('<tr id=game_' + game.id + '>');
+            $('#game_' + game.id).append('<input class="updateGame" type="button" value="Update" />');
+            $('#game_' + game.id).append('<input data-game-id="' + game.id + '" class="deleteGame" type="button" value="Delete" />');
+          }
+          $('#gameResultsBlock').show();
+          $('#home_team_id').val('');
+          $('#away_team_id').val('');
+          $('#date').val('');
+          $('#time').val('');
+        } else {
+          $('#gameResultsBlock').hide();
+          $('#gameResults').html('');
+        }
+    });
+  }
+
+  function makeTeamsList(selector, tag, team_id) {
+    var select = '' +
+    '<td>' +
+    '  <select data-id="' + tag + '" data-field-name="Home Team" class="' + tag + ' center searchTerm gameTerm">' +
+    '    <% @teams.each do |team| %>' +
+    '      <option value="<%=team.id%>"><%= team.fullname.titleize %></option>' +
+    '    <% end %>' +
+    '  </select>' +
+    '</td>';
+
+    $(selector).append(select);
+    $(selector + ' .' + tag).val(team_id);
+    console.log('setting', selector + ' .' + tag, 'to', team_id)
+  }
+
+  var gameMarkup = '' +
+  '<tr>' +
+  '  <td>' +
+  '    <select data-field-name="Home Team" id="homeTeamId" class="center searchTerm gameTerm">' +
+  '      <option value="">Any</option>' +
+  '      <% @teams.each do |team| %>' +
+  '        <option value="<%=team.id%>"><%= team.fullname.titleize %></option>' +
+  '      <% end %>' +
+  '    </select>' +
+  '  </td>' +
+  '  <td>' +
+  '    <select data-field-name="Away Team" id="awayTeamId" class="center searchTerm gameTerm">' +
+  '      <option value="">Any</option>' +
+  '      <% @teams.each do |team| %>' +
+  '        <option value="<%=team.id%>"><%= team.fullname.titleize %></option>' +
+  '      <% end %>' +
+  '    </select>' +
+  '  </td>' +
+  '  <td>' +
+  '    <input data-field-name="Date" id="date" class="center searchTerm gameTerm" type="date"/>' +
+  '  </td>' +
+  '  <td>' +
+  '    <input data-field-name="Time" id="time" class="center searchTerm gameTerm" type="time"/>' +
+  '  </td>' +
+  '</tr>' +
+  '<tr>' +
+  '  <td></td>' +
+  '  <td>' +
+  '    <input id="createGame" type="button" value="Create" />' +
+  '  </td>' +
+  '  <td>' +
+  '    <input id="searchGame" type="button" value="Search" />' +
+  '  </td>' +
+  '  <td></td>' +
+  '</tr>';
+
 </script>

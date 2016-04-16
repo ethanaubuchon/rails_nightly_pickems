@@ -10,6 +10,9 @@
       </li>
       <li> <%= link_to "Picks", picks_path %> </li>
       <li> <%= link_to "Games List", games_path %> </li>
+      <% if current_user.role == "admin" || current_user.role == "god" %>
+        <li> <%= link_to "Admin", "/admin/games" %></li>
+      <% end %>
     <% else %>
       <li>
         <%= link_to 'Login', new_user_session_path %>
